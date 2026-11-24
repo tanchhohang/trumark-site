@@ -5,15 +5,19 @@ import "./globals.css";
 
 // Set SITE_URL at build time (e.g. https://yourdomain.com). Share previews
 // need an absolute image URL, so this must match the live domain.
-const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+const siteUrl = process.env.SITE_URL || process.env.CF_PAGES_URL ||
+  (vercelHost ? `https://${vercelHost}` : "http://localhost:3000");
 const title = "Trumark";
+const searchTitle = "Trumark | Branding & Web Development Agency in Kathmandu";
 const description =
-  "Trumark is a creative and technology partner specialising in branding, custom software, and backend systems.";
+  "Trumark is a creative agency in Kathmandu, Nepal. We shape brand strategy, design visual identities and build websites and custom software. Explore our work.";
 const shareImage = {
-  url: "/assets/og-image.92791006f52b.jpg",
+  url: "/assets/rock-share.dbf3429adddd.jpg",
   width: 1200,
-  height: 1200,
-  alt: "Trumark Agency",
+  height: 630,
+  type: "image/jpeg",
+  alt: "Rock artwork from the Trumark homepage",
 };
 
 export const metadata: Metadata = {
@@ -26,7 +30,7 @@ export const metadata: Metadata = {
     },
     apple: "/assets/apple-touch-icon.86ddef2711c2.png",
   },
-  title,
+  title: searchTitle,
   description,
   openGraph: {
     type: "website",
@@ -37,10 +41,10 @@ export const metadata: Metadata = {
     images: [shareImage],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
-    images: [shareImage.url],
+    images: [shareImage],
   },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -8,6 +8,10 @@ import { Panels } from "../features/dialogs/Panels";
 import { WhatsAppCtas } from "../features/contact/WhatsAppCtas";
 import { PageMotion } from "../shared/PageMotion";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <>
