@@ -1,0 +1,162 @@
+@media (max-width: 700px) {
+  :root {
+    font-size: 10px;
+    --gutter: min(2rem, 5vw);
+    --nav-height: 8.4rem;
+  }
+  body {
+    font-size: 1.5rem;
+    line-height: 1.37;
+  }
+  .hero {
+    height: auto;
+    min-height: 72svh;
+    background-size: cover;
+    padding-block: 4.5rem 3.2rem;
+  }
+  .site-nav {
+    font-size: 1.3rem;
+  }
+  :root.has-mobile-menu {
+    --nav-height: 5.6rem;
+  }
+  .has-mobile-menu .menu-toggle {
+    grid-area: 1 / 3;
+    justify-self: end;
+    display: grid;
+    align-content: center;
+    justify-items: end;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+  }
+  .menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .has-mobile-menu .nav-panel {
+    display: none;
+  }
+  .site-nav.menu-open {
+    mix-blend-mode: normal;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .menu-open .nav-panel {
+    display: grid;
+    position: absolute;
+    inset: 100% 0 auto;
+    pointer-events: auto;
+    max-height: calc(100svh - var(--nav-height));
+    overflow-y: auto;
+    background: Canvas;
+    color: CanvasText;
+    border-bottom: 1px solid #ccc;
+    padding: 0 var(--gutter) 1rem;
+    font-size: 1.6rem;
+  }
+  .menu-open :is(.nav-index, .nav-studio) {
+    grid-area: auto;
+    justify-items: stretch;
+    gap: 0;
+  }
+  .menu-open .nav-studio {
+    border-top: 1px solid #ddd;
+  }
+  .menu-open .nav-studio > span {
+    order: 1;
+    padding-block: 1rem;
+    font-size: 1.3rem;
+  }
+  .menu-open .nav-panel :is(a, button) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .hero-copy {
+    display: block;
+    padding-top: 12rem;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6.9vw, 4.1rem);
+  }
+  .lead {
+    width: min(100%, 35rem);
+    margin-top: 2.7rem;
+    font-size: 1.5rem;
+  }
+  .actions {
+    gap: 0.7rem;
+    margin-top: 1.6rem;
+  }
+  .button {
+    width: 10rem;
+    height: 3.4rem;
+    font-size: 1.12rem;
+    border-radius: 0.4rem;
+  }
+  .split {
+    display: block;
+  }
+  main section {
+    padding-block: max(var(--nav-height), 8svh);
+  }
+  .eyebrow {
+    font-size: 1.6rem;
+  }
+  .statement {
+    margin-top: 2.4rem;
+    font-size: 2.45rem;
+  }
+  .expertise {
+    display: block;
+  }
+  .expertise-copy {
+    padding: 0;
+  }
+  .expertise-copy .button {
+    margin-top: 1.6rem;
+  }
+  .service-list {
+    margin-top: 2.4rem;
+  }
+  .service {
+    min-height: 7.6rem;
+    padding-inline: 1rem;
+  }
+  .service h3 {
+    font-size: clamp(2rem, 5.5vw, 2.6rem);
+  }
+  .quotes,
+  .section-intro {
+    font-size: 1.5rem;
+  }
+  .section-intro {
+    max-width: 30rem;
+    line-height: 1.37;
+  }
+  .quotes {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    margin-top: 2.4rem;
+  }
+  .quotes blockquote {
+    margin-top: 1.2rem;
+    max-width: none;
+  }
+}

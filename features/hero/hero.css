@@ -1,0 +1,154 @@
+.hero-mark {
+  display: none;
+}
+.scroll-cue {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: inherit;
+  font-size: clamp(12px, 1vw, 20px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.scroll-cue:hover {
+  text-decoration: none;
+}
+.intro-playing .scroll-cue {
+  color: var(--ink);
+}
+.intro-playing .site-nav {
+  visibility: hidden;
+}
+.intro-playing .hero-copy {
+  opacity: 0;
+  pointer-events: none;
+}
+/* A click anywhere finishes the intro. */
+.intro-playing .hero {
+  cursor: pointer;
+}
+.hero-motion .hero {
+  position: relative;
+  isolation: isolate;
+  height: auto;
+  min-height: 100svh;
+  --frame-block: 0;
+  --frame-inline: 0;
+  padding-top: var(--nav-height);
+  background: white;
+}
+.hero-motion .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    url("/assets/hero-guides.3c8f0b9c3a42.png") center / 100% 100% no-repeat,
+    #493f32 var(--rock) center / 104% 100% no-repeat;
+  clip-path: inset(
+    calc(var(--frame-block, 1) * var(--frame-top))
+      calc(var(--frame-inline, 1) * var(--frame-side, 23%))
+      calc(var(--frame-block, 1) * 2.25svh)
+  );
+}
+.scroll-intro .hero-sequence::after {
+  content: "";
+  display: block;
+  height: 150svh;
+}
+.scroll-intro .hero {
+  position: sticky;
+  top: 0;
+}
+.intro-playing .hero-mark {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 49%;
+  transform-origin: center top;
+  color: white;
+  z-index: 1;
+}
+.hero-motion .hero-copy {
+  padding-top: 0;
+}
+.intro-playing .hero {
+  --frame-block: 1;
+  --frame-inline: 1;
+}
+@media (max-width: 700px) {
+  .hero-motion .hero {
+    --frame-top: 1rem;
+    --frame-side: var(--gutter);
+  }
+  .hero-motion .hero::before {
+    inset-block-start: calc(var(--frame-block, 1) * var(--nav-height));
+    background-size: cover;
+  }
+  .hero-motion .hero-mark {
+    width: 72%;
+  }
+  .site-nav.over-art:not(.menu-open) {
+    mix-blend-mode: normal;
+  }
+  .scroll-cue {
+    display: none;
+  }
+}
+
+.hero-copy {
+  margin-top: auto;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+h1 {
+  max-width: 25ch;
+  text-wrap: balance;
+  font: 400 2.48rem/0.997 var(--display);
+  letter-spacing: -0.031em;
+}
+.lead {
+  width: 18.85rem;
+  padding-bottom: 0.27rem;
+  font-size: 0.93rem;
+  letter-spacing: -0.028em;
+}
+.lead > p {
+  color: #e8e8e8;
+}
+.actions {
+  gap: 0.37rem;
+  margin-top: 1.08rem;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.73rem;
+  height: 1.82rem;
+  border: max(0.04rem, 0.5px) solid currentColor;
+  border-radius: 0.23rem;
+  color: inherit;
+  background: transparent;
+  font: 400 0.64rem/1 var(--body);
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+.button {
+  cursor: pointer;
+}
+.button.light {
+  color: #202020;
+  background: #fff;
+  border-color: #fff;
+}
+
+/* Match paint(0) while the browser downloads the interactive code. */
+.intro-playing .hero-mark:not([style*="transform"]) {
+  transform: translate(-50%, var(--initial-mark-y, calc(91.5svh - 100%))) scale(1);
+}

@@ -1,0 +1,17 @@
+/* Extra room between the hero and this section. */
+main section.about {
+  padding-top: calc(3 * max(var(--nav-height), 6svh));
+}
+@media (max-width: 700px) {
+  main section.about {
+    padding-top: calc(3 * max(var(--nav-height), 8svh));
+  }
+}
+.statement {
+  font: 400 1.65rem/1.2 var(--body);
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+.statement p + p {
+  margin-top: 1.85rem;
+}

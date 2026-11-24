@@ -1,0 +1,54 @@
+.site-footer,
+dialog {
+  --paper: #fbfbfb;
+  --ink: #222;
+  --panel: #f3f2ef;
+  --line: #bcbcbc;
+  color: var(--ink);
+  font: 400 clamp(14px, 1.11111vw, 22px)/1.3 var(--body);
+}
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  border-radius: clamp(18px, 2.5vw, 32px) clamp(18px, 2.5vw, 32px) 0 0;
+}
+.site-footer .frame {
+  margin-inline: var(--gutter);
+}
+.site-footer nav {
+  display: block;
+  color: inherit;
+  font: inherit;
+}
+.site-footer h2,
+dialog h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+:is(.site-footer, dialog) button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+:is(.site-footer, dialog) .button {
+  width: auto;
+  height: auto;
+  min-height: max(40px, 2.77778vw);
+  min-width: 8.88889vw;
+  padding: 0.5em 1em;
+  border: 1px solid var(--ink);
+  border-radius: max(8px, 0.69444vw);
+  letter-spacing: -0.035em;
+  font-size: max(14px, 0.97222vw);
+}
+:is(.site-footer, dialog) .solid {
+  color: var(--paper);
+  background: var(--ink);
+}
+:is(.site-footer, dialog) :focus-visible {
+  outline: 2px solid #70513e;
+  outline-offset: 3px;
+}

@@ -1,0 +1,25 @@
+.scramble-label {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.is-scrambling > .scramble-original {
+  opacity: 0;
+}
+.scramble-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.reveal-word {
+  display: inline-block;
+  vertical-align: top;
+  overflow: clip;
+}
+.reveal-word > span {
+  display: inline-block;
+}

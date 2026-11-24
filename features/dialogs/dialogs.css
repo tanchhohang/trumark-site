@@ -1,0 +1,52 @@
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  width: min(540px, calc(100% - 32px));
+  max-height: 85dvh;
+  --dialog-pad: clamp(24px, 4vw, 44px);
+  padding: var(--dialog-pad);
+}
+dialog::backdrop {
+  background: #18181873;
+}
+dialog h2 {
+  font-size: 26px;
+  padding-right: 38px;
+}
+dialog h3 {
+  font-size: 1.15em;
+  font-weight: 550;
+  margin: 1.4em 0 0.45em;
+}
+dialog p {
+  line-height: 1.5;
+  color: var(--muted);
+}
+dialog h2 + p {
+  margin: 1em 0 1.25em;
+}
+dialog .close {
+  position: absolute;
+  top: calc(var(--dialog-pad) - 3px);
+  right: calc(var(--dialog-pad) - 14px);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+}
+dialog .button {
+  font-size: 14px;
+  min-height: 40px;
+  border-radius: 8px;
+}
+dialog summary {
+  padding: 0.85em 0;
+  cursor: pointer;
+}
+dialog details {
+  border-bottom: 1px solid var(--line);
+}
+dialog details p {
+  padding-bottom: 1em;
+}

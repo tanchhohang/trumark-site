@@ -1,0 +1,116 @@
+.expertise {
+  display: grid;
+  grid-template-columns: 37% 1fr;
+  font-family: var(--section-font);
+}
+.expertise-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* Centre the label and button on the first and last service rows. */
+  padding: 2.65rem 0 2.37rem;
+}
+.expertise-copy .button {
+  margin-top: auto;
+  border-radius: 0.45rem;
+}
+.expertise .button {
+  font-family: inherit;
+}
+.service-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.service {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 6.55rem;
+  padding-inline: 2.65rem 0;
+  overflow: hidden;
+}
+.service h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+.service:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: #c5c5c5;
+  transform-origin: left;
+}
+.service:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+#services-title {
+  overflow: hidden;
+}
+#services-title > span {
+  display: block;
+}
+.service-preview {
+  flex: none;
+  width: 0;
+  height: min(1.16em, 11vw);
+  opacity: 0;
+  background: var(--service-gradient);
+}
+.service-preview:not(:last-child) {
+  margin-right: 0.22em;
+}
+.service:is(:hover, :focus-visible, :active) .service-preview {
+  width: min(1.74em, 16.5vw);
+  opacity: 1;
+  margin-left: 0.21em;
+}
+@media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .service-preview {
+    transition:
+      width 0.4s,
+      margin 0.4s,
+      opacity 0.4s;
+  }
+  .service:is(:hover, :focus-visible, :active) .service-preview {
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .service-enter.service::before {
+    animation: service-divider 1.4s cubic-bezier(0.87, 0, 0.13, 1) backwards;
+  }
+  .service-enter.service h3,
+  #services-title.service-enter > span {
+    animation: service-rise 1.3s 0.15s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+  @keyframes service-divider {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes service-rise {
+    from {
+      transform: translateY(110%);
+      clip-path: inset(0 0 100%);
+    }
+    to {
+      transform: translateY(0);
+      clip-path: inset(0);
+    }
+  }
+}
+.section-intro {
+  margin-top: 1.32rem;
+  max-width: 17.4rem;
+  color: var(--muted);
+  font: 400 0.93rem/1.24 var(--body);
+  letter-spacing: -0.03em;
+}

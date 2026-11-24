@@ -1,0 +1,26 @@
+main {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background-color: white;
+}
+main section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: max(var(--nav-height), 6svh) var(--gutter);
+}
+.split {
+  --intro-column: 0.4;
+  display: grid;
+  grid-template-columns: calc(100% * var(--intro-column)) 1fr;
+}
+.eyebrow {
+  font: 400 1.09rem/1.15 var(--section-font);
+  text-transform: uppercase;
+  letter-spacing: -0.042em;
+}
+.about .eyebrow,
+.clients .eyebrow {
+  padding-top: 0.44rem;
+}

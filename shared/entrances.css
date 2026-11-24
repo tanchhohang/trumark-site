@@ -1,0 +1,37 @@
+@media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  @supports (animation-timeline: view()) {
+    .about .eyebrow,
+    .statement p,
+    .expertise-copy p,
+    .clients header,
+    .quotes blockquote,
+    .quotes figcaption {
+      animation: copy-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 26%;
+    }
+    .client-photo {
+      animation: photo-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 42%;
+    }
+  }
+  @keyframes copy-arrive {
+    from {
+      opacity: 0.2;
+      transform: translateY(1em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes photo-open {
+    from {
+      clip-path: inset(7% 12%);
+    }
+    to {
+      clip-path: inset(0);
+    }
+  }
+}

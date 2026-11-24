@@ -1,0 +1,122 @@
+.panel-links {
+  margin-top: 24px;
+}
+.panel-links a,
+.summary-links a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.summary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-footer {
+  overflow: clip;
+  background-color: var(--panel);
+  padding-top: 5.83333vw;
+  letter-spacing: -0.026em;
+}
+.footer-main {
+  --invitation-width: 54.57%;
+  display: grid;
+  grid-template-columns: var(--invitation-width) 1fr;
+  padding-bottom: 6.38889vw;
+}
+.footer-invitation h2 {
+  font-size: clamp(28px, 2.43vw, 48px);
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+}
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55556vw;
+  margin-top: 1.80556vw;
+}
+.footer-directory {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.82fr;
+  row-gap: 2.5vw;
+  padding-top: 0.35vw;
+}
+.footer-directory h3 {
+  font-size: 0.9375em;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--muted);
+}
+.footer-directory ul {
+  list-style: none;
+  display: grid;
+  gap: 0.61vw;
+  margin: 1.25vw 0 0;
+  padding: 0;
+  line-height: 1.45;
+}
+.footer-admin {
+  grid-column: 1;
+}
+.footer-text-button {
+  padding: 0;
+  letter-spacing: inherit;
+  text-align: left;
+}
+.footer-summary {
+  border-top: 1px solid var(--line);
+  padding: 1.94444vw 0 1.38889vw;
+}
+.footer-summary p {
+  color: var(--muted);
+  font-size: max(12px, 0.9375vw);
+}
+.footer-summary .summary-links {
+  gap: max(7px, 0.55556vw);
+  margin-top: 0.69444vw;
+}
+.footer-summary a {
+  display: grid;
+  place-items: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: max(32px, 2.36111vw);
+  aspect-ratio: 1;
+}
+.footer-summary img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+@media (max-width: 800px) {
+  .site-footer {
+    padding-top: 44px;
+  }
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+  }
+  .footer-directory {
+    row-gap: 24px;
+    column-gap: 12px;
+  }
+  .footer-directory ul {
+    margin-top: 12px;
+    gap: 8px;
+  }
+  .footer-actions {
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .footer-summary {
+    padding: 20px 0;
+  }
+  .footer-summary .summary-links {
+    margin-top: 10px;
+  }
+  .footer-summary a {
+    width: 40px;
+  }
+}
