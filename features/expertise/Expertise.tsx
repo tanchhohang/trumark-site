@@ -14,12 +14,12 @@ export function Expertise() {
             Bring us in for one part of a project, or work with us from the
             first brand sketches through launch.
           </p>
-          <a className="button" href="#all-services">
+          {/* <a className="button" href="#all-services">
             <ScrambleLabel>All Services</ScrambleLabel>
-          </a>
+          </a> */}
         </div>
         <ol className="service-list">
-          {services.map(({ name, words, gradient }) => (
+          {services.map(({ name, words, gradient, description }) => (
             <li
               className="service"
               key={name}
@@ -40,6 +40,11 @@ export function Expertise() {
                   </>
                 )}
               </h3>
+              <div className="service-detail">
+                <div>
+                  <p>{description}</p>
+                </div>
+              </div>
             </li>
           ))}
         </ol>

@@ -14,6 +14,8 @@
 }
 .client-photo {
   display: grid;
+  color: inherit;
+  overflow: hidden;
   place-items: center;
   width: 100%;
   aspect-ratio: 1;
@@ -61,4 +63,16 @@ figcaption strong {
   display: block;
   font-family: var(--display);
   color: var(--ink);
+}
+a.client-photo:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+@media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .client-photo img {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  a.client-photo:is(:hover, :focus-visible) img {
+    transform: scale(1.015);
+  }
 }

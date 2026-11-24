@@ -137,7 +137,12 @@
   }
   .service {
     min-height: 7.6rem;
+    padding-block: 2.6rem;
     padding-inline: 1rem;
+  }
+  .service-detail p {
+    max-width: 26rem;
+    padding-right: 1rem;
   }
   .service h3 {
     font-size: clamp(2rem, 5.5vw, 2.6rem);

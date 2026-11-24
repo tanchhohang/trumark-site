@@ -15,9 +15,15 @@ export function FeaturedWork() {
         </header>
         <div className="quotes" id="testimonials">
           {testimonials.map(
-            ({ company, card, logo, width, height, quote, name, role }) => (
+            ({ company, url, card, logo, width, height, quote, name, role }) => (
               <figure key={company}>
-                <div className={`client-photo ${card}`}>
+                <a
+                  className={`client-photo ${card}`}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit the ${company} website (opens in a new tab)`}
+                >
                   <img
                     loading="lazy"
                     src={logo}
@@ -25,7 +31,7 @@ export function FeaturedWork() {
                     width={width}
                     height={height}
                   />
-                </div>
+                </a>
                 <blockquote>{quote}</blockquote>
                 <figcaption>
                   <strong>{name}</strong>

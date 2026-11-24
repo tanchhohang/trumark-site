@@ -1,5 +1,6 @@
 interface Testimonial {
   company: string;
+  url: string;
   card: string;
   logo: string;
   width: number;
@@ -12,6 +13,7 @@ interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     company: "eRuchi",
+    url: "https://www.eruchi.com.np/",
     card: "eruchi-card",
     logo: "/assets/eruchi.603f4d8bdccc.png",
     width: 376,
@@ -23,6 +25,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     company: "Hisab Kitab",
+    url: "https://hisabkitabnepal.com.np/",
     card: "hisab-card",
     logo: "/assets/hisab.ef31837517af.webp",
     width: 398,

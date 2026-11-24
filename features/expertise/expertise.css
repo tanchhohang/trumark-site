@@ -26,8 +26,11 @@
 .service {
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   min-height: 6.55rem;
+  padding-block: 2.4rem;
   padding-inline: 2.65rem 0;
   overflow: hidden;
 }
@@ -73,7 +76,33 @@
   opacity: 1;
   margin-left: 0.21em;
 }
+/* Brief description that drops down under the title on hover or focus. */
+.service-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.service-detail > div {
+  min-height: 0;
+  overflow: hidden;
+}
+.service-detail p {
+  max-width: 30rem;
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font: 400 0.93rem/1.3 var(--body);
+  letter-spacing: -0.02em;
+}
+.service:is(:hover, :focus-visible, :active) .service-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
 @media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .service-detail {
+    transition:
+      grid-template-rows 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+      opacity 0.4s;
+  }
   .service-preview {
     transition:
       width 0.4s,

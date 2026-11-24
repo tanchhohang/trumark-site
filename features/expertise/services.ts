@@ -25,7 +25,7 @@ export const services: Service[] = [
     words: ["Development"],
     gradient: "linear-gradient(160deg,#16222b,#3d5a6b 60%,#a8b5a0)",
     description:
-      "Websites and software built around the things your customers need to do.",
+      "Websites and software built around what your customers need to do, and engineered to keep performing as your users, data and team grow.",
   },
   {
     name: "Marketing",

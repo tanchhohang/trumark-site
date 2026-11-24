@@ -4,8 +4,15 @@ import { openingStyles } from "../features/hero/opening-styles";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  icons: { icon: "data:," },
-  title: "Trumark — Design and development",
+  icons: {
+    icon: {
+      url: "/assets/favicon.ba011fa9694c.png",
+      type: "image/png",
+      sizes: "256x256",
+    },
+    apple: "/assets/apple-touch-icon.86ddef2711c2.png",
+  },
+  title: "Trumark",
   description:
     "Trumark is a creative and technology partner specialising in branding, custom software, and backend systems.",
 };
