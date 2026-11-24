@@ -3,7 +3,21 @@ import { openingState } from "../features/hero/opening-state";
 import { openingStyles } from "../features/hero/opening-styles";
 import "./globals.css";
 
+// Set SITE_URL at build time (e.g. https://yourdomain.com). Share previews
+// need an absolute image URL, so this must match the live domain.
+const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+const title = "Trumark";
+const description =
+  "Trumark is a creative and technology partner specialising in branding, custom software, and backend systems.";
+const shareImage = {
+  url: "/assets/og-image.92791006f52b.jpg",
+  width: 1200,
+  height: 1200,
+  alt: "Trumark Agency",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: {
       url: "/assets/favicon.ba011fa9694c.png",
@@ -12,9 +26,22 @@ export const metadata: Metadata = {
     },
     apple: "/assets/apple-touch-icon.86ddef2711c2.png",
   },
-  title: "Trumark",
-  description:
-    "Trumark is a creative and technology partner specialising in branding, custom software, and backend systems.",
+  title,
+  description,
+  openGraph: {
+    type: "website",
+    siteName: title,
+    title,
+    description,
+    url: "/",
+    images: [shareImage],
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+    images: [shareImage.url],
+  },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
