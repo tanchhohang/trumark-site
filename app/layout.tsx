@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   },
   title: searchTitle,
   description,
+  verification: { google: "MvocZ_zEwNd8NTooYDecq_qQd86z9A9Q-8BoZbZyW_k" },
   openGraph: {
     type: "website",
     siteName: title,
