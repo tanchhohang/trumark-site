@@ -3,7 +3,7 @@
   height: 35.9rem;
   padding: 0.72rem var(--gutter) 3.85rem;
   background:
-    url("/assets/hero-guides.3c8f0b9c3a42.png") center / 100% 100% no-repeat,
+    url("/assets/hero-guides.3c8f0b9c3a42.svg") center / 100% 100% no-repeat,
     #493f32 var(--rock) center / 104% 100% no-repeat;
   color: #fff;
   display: flex;

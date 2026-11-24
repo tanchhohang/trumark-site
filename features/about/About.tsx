@@ -7,13 +7,13 @@ export function About() {
         </h2>
         <div className="statement">
           <p>
-            We start with the people on the other side of the screen. What
-            brought them here? What are they trying to do?
+            People come to your website looking for answers. Is this right for
+            me? What does it cost? Can I book it today?
           </p>
           <p>
-            The answers shape what we make with you, from the first words on
-            your homepage to the steps it takes to book a service or place an
-            order.
+            We write the headline, design the page and build the checkout around
+            those questions, so people can find what they need and feel ready to
+            place an order.
           </p>
         </div>
       </section>

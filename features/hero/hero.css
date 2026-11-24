@@ -46,7 +46,7 @@
   inset: 0;
   z-index: -1;
   background:
-    url("/assets/hero-guides.3c8f0b9c3a42.png") center / 100% 100% no-repeat,
+    url("/assets/hero-guides.3c8f0b9c3a42.svg") center / 100% 100% no-repeat,
     #493f32 var(--rock) center / 104% 100% no-repeat;
   clip-path: inset(
     calc(var(--frame-block, 1) * var(--frame-top))
