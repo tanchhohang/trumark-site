@@ -81,6 +81,18 @@
   --frame-inline: 1;
 }
 @media (max-width: 700px) {
+  /* Held back until MobileIntro (GSAP) takes over with inline styles. */
+  .mobile-intro :is(.hero h1, .hero .lead > p, .hero .actions) {
+    visibility: hidden;
+  }
+  .mobile-intro :is(.site-nav .wordmark, .site-nav .menu-toggle) {
+    opacity: 0;
+  }
+  /* Room for descenders inside the word masks. */
+  .hero h1 .reveal-word {
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
   .hero-motion .hero {
     --frame-top: 1rem;
     --frame-side: var(--gutter);

@@ -1,10 +1,12 @@
 import { openingPosition } from "./opening-state";
 import { ScrambleLabel } from "../../shared/ScrambleLabel";
 import { HeroIntro } from "./HeroIntro";
+import { MobileIntro } from "./MobileIntro";
 export function Hero() {
   return (
     <div className="hero-sequence" id="home">
       <HeroIntro />
+      <MobileIntro />
       <header className="hero">
         <a
           className="hero-mark"

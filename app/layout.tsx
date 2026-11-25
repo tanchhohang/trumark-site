@@ -9,7 +9,7 @@ const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERC
 const siteUrl = process.env.SITE_URL || process.env.CF_PAGES_URL ||
   (vercelHost ? `https://${vercelHost}` : "http://localhost:3000");
 const title = "Trumark";
-const searchTitle = "Trumark | Branding & Web Development Agency in Kathmandu";
+const searchTitle = "Trumark";
 const description =
   "Trumark is a creative agency in Kathmandu, Nepal. We shape brand strategy, design visual identities and build websites and custom software. Explore our work.";
 const shareImage = {

@@ -1,6 +1,6 @@
 "use client";
 import { useLayoutEffect } from "react";
-import { MOBILE_INTRO_MS, OPENING_MARK_BASELINE } from "./motion";
+import { OPENING_MARK_BASELINE } from "./motion";
 export function HeroIntro() {
   useLayoutEffect(() => {
     window.dispatchEvent(new Event("trumark:hero-ready"));
@@ -15,8 +15,6 @@ export function HeroIntro() {
     const nav = document.querySelector<HTMLElement>(".site-nav")!;
     const homeLink = nav.querySelector<HTMLElement>(".wordmark")!;
     const mobile = matchMedia("(max-width: 700px)");
-    const playOnLoad =
-      mobile.matches && root.classList.contains("intro-playing");
     const wasPlaying = root.classList.contains("intro-playing");
     const wasScrollIntro = root.classList.contains("scroll-intro");
     let completed = !root.classList.contains("intro-playing");
@@ -79,133 +77,99 @@ export function HeroIntro() {
       hero.style.removeProperty("--frame-inline");
       hero.style.removeProperty("--frame-block");
     }
-    function finish() {
-      completed = true;
+    function configure() {
       reset();
-    }
-    function configure(autoplay = false) {
-      reset();
-      root.classList.toggle("hero-motion", motion.matches);
-      if (!motion.matches || (mobile.matches && !autoplay)) completed = true;
+      // The opening animation is laptop and desktop only. Phones skip it.
+      const enabled = motion.matches && !mobile.matches;
+      root.classList.toggle("hero-motion", enabled);
+      if (!enabled) completed = true;
       if (completed) return;
 
       listeners = new AbortController();
       const options = { passive: true, signal: listeners.signal };
-      root.classList.add("intro-playing");
-      if (!mobile.matches && !autoplay) {
-        root.classList.add("scroll-intro");
-        copy.inert = true;
-        let settled = false;
-        function followScroll() {
-          const progress = Math.max(
-            0,
-            Math.min(1, (window.scrollY - scrollStart) / scrollDistance),
-          );
-          if (progress === 1 && settled) return;
-          // Keep the sticky runway so scrolling back up replays the intro.
-          settled = progress === 1;
-          root.classList.toggle("intro-playing", !settled);
-          copy.inert = !settled;
-          paint(progress);
-        }
-        function resize() {
-          // The mark is only laid out while the intro class is on.
-          root.classList.add("intro-playing");
-          settled = false;
-          measure();
-          followScroll();
-        }
-        // Play the rest of the intro from wherever it is. The wheel or a touch
-        // hands control straight back to the visitor.
-        function playToEnd() {
-          cancelAnimationFrame(frame);
-          const from = window.scrollY;
-          const to = Math.ceil(scrollStart + scrollDistance);
-          if (to <= from) return;
-          const duration = 450 + 650 * ((to - from) / scrollDistance);
-          const begin = performance.now();
-          function step(time: number) {
-            const t = Math.min(1, (time - begin) / duration);
-            const eased = t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
-            window.scrollTo({
-              top: from + (to - from) * eased,
-              behavior: "instant",
-            });
-            if (t < 1) frame = requestAnimationFrame(step);
-          }
-          frame = requestAnimationFrame(step);
-        }
-        resize();
-        window.addEventListener(
-          "click",
-          (event) => {
-            if (
-              !root.classList.contains("intro-playing") ||
-              (event.target instanceof Element &&
-                event.target.closest(".scroll-cue"))
-            )
-              return;
-            // The hero copy is not ready yet, so a click finishes the intro
-            // instead of landing on a half-visible button.
-            event.preventDefault();
-            playToEnd();
-          },
-          { signal: listeners.signal },
+      root.classList.add("intro-playing", "scroll-intro");
+      copy.inert = true;
+      let settled = false;
+      function followScroll() {
+        const progress = Math.max(
+          0,
+          Math.min(1, (window.scrollY - scrollStart) / scrollDistance),
         );
-        for (const event of ["wheel", "touchstart"])
-          window.addEventListener(
-            event,
-            () => cancelAnimationFrame(frame),
-            options,
-          );
-        window.addEventListener("scroll", followScroll, options);
-        window.addEventListener("resize", resize, options);
-        window.addEventListener("pageshow", resize, options);
+        if (progress === 1 && settled) return;
+        // Keep the sticky runway so scrolling back up replays the intro.
+        settled = progress === 1;
+        root.classList.toggle("intro-playing", !settled);
+        copy.inert = !settled;
+        paint(progress);
+      }
+      function resize() {
+        // The mark is only laid out while the intro class is on.
+        root.classList.add("intro-playing");
+        settled = false;
+        measure();
+        followScroll();
+      }
+      // Play the rest of the intro from wherever it is. The wheel or a touch
+      // hands control straight back to the visitor.
+      function playToEnd() {
+        cancelAnimationFrame(frame);
+        const from = window.scrollY;
+        const to = Math.ceil(scrollStart + scrollDistance);
+        if (to <= from) return;
+        const duration = 450 + 650 * ((to - from) / scrollDistance);
+        const begin = performance.now();
+        function step(time: number) {
+          const t = Math.min(1, (time - begin) / duration);
+          const eased = t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
+          window.scrollTo({
+            top: from + (to - from) * eased,
+            behavior: "instant",
+          });
+          if (t < 1) frame = requestAnimationFrame(step);
+        }
+        frame = requestAnimationFrame(step);
+      }
+      resize();
+      window.addEventListener(
+        "click",
+        (event) => {
+          if (
+            !root.classList.contains("intro-playing") ||
+            (event.target instanceof Element &&
+              event.target.closest(".scroll-cue"))
+          )
+            return;
+          // The hero copy is not ready yet, so a click finishes the intro
+          // instead of landing on a half-visible button.
+          event.preventDefault();
+          playToEnd();
+        },
+        { signal: listeners.signal },
+      );
+      for (const event of ["wheel", "touchstart"])
         window.addEventListener(
-          "keydown",
-          (event) => {
-            if (
-              (event.key === "Tab" || event.key === "Escape") &&
-              root.classList.contains("intro-playing")
-            ) {
-              window.scrollTo(0, Math.ceil(scrollStart + scrollDistance));
-              followScroll();
-            }
-          },
+          event,
+          () => cancelAnimationFrame(frame),
           options,
         );
-        return;
-      }
-
-      if (window.scrollY > 0) return finish();
-      copy.inert = true;
-      measure();
-      paint(0);
-      let started: number | undefined;
-      function draw(time: number) {
-        started ??= time;
-        const progress = Math.min(1, (time - started) / MOBILE_INTRO_MS);
-        if (progress === 1) return finish();
-        paint(progress);
-        frame = requestAnimationFrame(draw);
-      }
-      window.addEventListener("resize", measure, options);
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 0) finish();
-      }, options);
-      // A tap skips the short intro instead of landing on hidden buttons.
-      for (const event of ["hashchange", "pagehide", "click"])
-        window.addEventListener(event, finish, options);
+      window.addEventListener("scroll", followScroll, options);
+      window.addEventListener("resize", resize, options);
+      window.addEventListener("pageshow", resize, options);
       window.addEventListener(
         "keydown",
         (event) => {
-          if (event.key === "Tab" || event.key === "Escape") finish();
+          if (
+            (event.key === "Tab" || event.key === "Escape") &&
+            root.classList.contains("intro-playing")
+          ) {
+            window.scrollTo(0, Math.ceil(scrollStart + scrollDistance));
+            followScroll();
+          }
         },
         options,
       );
-      frame = requestAnimationFrame(draw);
     }
-    configure(playOnLoad);
+    configure();
     const reconfigure = () => configure();
     mobile.addEventListener("change", reconfigure);
     motion.addEventListener("change", reconfigure);

@@ -5,13 +5,22 @@ import { OPENING_MARK_BASELINE } from "./motion";
 export const openingState = `(() => {
   const root = document.documentElement;
   root.classList.add('has-mobile-menu');
-  if (!matchMedia('screen and (prefers-reduced-motion: no-preference) and (forced-colors: none)').matches) return;
+  const motionOk = matchMedia('screen and (prefers-reduced-motion: no-preference) and (forced-colors: none)').matches;
+  // The scroll intro is laptop and desktop only. Phones get a short GSAP
+  // entrance instead (MobileIntro). Hide the hero text and mark until it runs,
+  // with a failsafe so a failed script download never leaves them hidden.
+  if (matchMedia('(max-width: 700px)').matches) {
+    if (motionOk && (!location.hash || location.hash === '#home')) {
+      root.classList.add('mobile-intro');
+      setTimeout(() => root.classList.remove('mobile-intro'), 3000);
+    }
+    return;
+  }
+  if (!motionOk) return;
   root.classList.add('hero-motion');
   if (location.hash && location.hash !== '#home') return;
 
-  const mobile = matchMedia('(max-width: 700px)').matches;
-  root.classList.add('intro-playing');
-  if (!mobile) root.classList.add('scroll-intro');
+  root.classList.add('intro-playing', 'scroll-intro');
   const pending = new AbortController();
   const options = { signal: pending.signal, passive: true };
   const finish = () => {
@@ -21,9 +30,6 @@ export const openingState = `(() => {
   window.addEventListener('keydown', event => {
     if (event.key === 'Escape' || event.key === 'Tab') finish();
   }, options);
-  if (mobile) {
-    for (const event of ['scroll', 'hashchange', 'pagehide']) window.addEventListener(event, finish, options);
-  }
   window.addEventListener('trumark:hero-ready', () => pending.abort(), options);
 })();`;
 
